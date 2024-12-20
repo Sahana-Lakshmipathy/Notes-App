@@ -38,4 +38,5 @@ collections.forEach((col) => {
     };
 });
 
+// Export db directly
 export default db;

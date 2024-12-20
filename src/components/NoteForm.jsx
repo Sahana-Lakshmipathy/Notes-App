@@ -6,11 +6,17 @@ const NoteForm = ({setNotes}) => {
 
       const noteBody = e.target.body.value;
 
+      // ensure an empty string is not submitted
+      if (!noteBody === " ") return;
+
       try{
          // make our request
          const payload = {body:noteBody};
          const response = await db.notes.create(payload);
          setNotes((prevState)=>[response,...prevState]);
+
+         // clear the input
+         e.target.reset();
       } catch (error){
          console.error(error);
       }
