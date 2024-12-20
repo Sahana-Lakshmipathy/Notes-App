@@ -1,8 +1,23 @@
+import db from '../appwrite/databases';
 
+const NoteForm = ({setNotes}) => {
+   const handleAdd = async (e) =>{
+      e.preventDefault();
 
-const NoteForm = () => {
+      const noteBody = e.target.body.value;
+
+      try{
+         // make our request
+         const payload = {body:noteBody};
+         const response = await db.notes.create(payload);
+         setNotes((prevState)=>[response,...prevState]);
+      } catch (error){
+         console.error(error);
+      }
+   }
+
   return (
-    <form>
+    <form onSubmit={handleAdd}>
       <input 
       type="text" 
       name="body" 
