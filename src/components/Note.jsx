@@ -17,7 +17,7 @@ const Note = ({setNotes, noteData}) => {
    }
 
   return (
-    <div>
+    <div className="note-wrapper">
       <span onClick={handleUpdate}> 
          {note.completed ? <s>{note.body}</s> :
             <>{note.body}</>}
