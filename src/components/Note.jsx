@@ -1,13 +1,19 @@
 import { useState } from "react"
 import db from "../appwrite/databases";
+import DeleteIcon from '../assets/DeleteIcon';
 
-const Note = ({noteData}) => {
+const Note = ({setNotes, noteData}) => {
    const [note, setNote] = useState(noteData);
 
    const handleUpdate = async () => {
          const completed = !note.completed;
          db.notes.update(note.$id, {completed});
          setNote({...note, completed:completed});
+   }
+
+   const handleDelete = async () =>{
+      db.notes.delete(note.$id);
+      setNotes((prevState) => prevState.filter((i) => i.$id !== note.$id));
    }
 
   return (
@@ -17,6 +23,9 @@ const Note = ({noteData}) => {
             <>{note.body}</>}
       </span>
       
+      <div onClick={handleDelete}>
+         <DeleteIcon/>
+      </div>
    </div>
   )
 }
