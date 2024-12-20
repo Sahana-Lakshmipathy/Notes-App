@@ -7,4 +7,5 @@ client
 
 const databases = new Databases(client);
 
-export { client, databases };
+export { client, databases };console.log('Client initialized:', client);
+console.log('Databases initialized:', databases);
