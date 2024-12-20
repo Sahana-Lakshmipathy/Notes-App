@@ -3,6 +3,7 @@ import { Client, Databases} from 'appwrite';
 const client = new Client();
 client
    // Your Appwrite endpoint
+   .setEndpoint(import.meta.env.VITE_ENDPOINT)
   .setProject(import.meta.env.VITE_APPWRITE_PROJECT_ID); // Your Appwrite project ID
 
 const databases = new Databases(client);

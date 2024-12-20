@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { databases } from "../appwrite/config";
+// import { db } from "../appwrite/databases";
+import NoteForm from "../components/NoteForm";
 
 const Notes = () => {
   const [notes, setNotes] = useState([]);
@@ -20,8 +22,10 @@ const Notes = () => {
         import.meta.env.VITE_DATABASE_ID,
         import.meta.env.VITE_COLLECTION_ID
       );
-  
-      console.log('Documents:', response.documents);
+      // const response = await db.notes.list();
+
+      // console.log('Documents:', response.documents);
+      // console.log('Documents Response:', response);
       setNotes(response.documents);
     } catch (error) {
       console.error('Error fetching documents:', error);
@@ -31,6 +35,7 @@ const Notes = () => {
 
   return (
     <div>
+      <NoteForm setNotes={setNotes}/>
       <div>
         {notes?.map((note) => (
           <div key={note.$id}>{note.body}</div>
