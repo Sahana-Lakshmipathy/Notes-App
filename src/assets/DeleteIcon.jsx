@@ -1,4 +1,4 @@
-import React from "react";
+
 
 const DeleteIcon = ({ size = 24, stroke = "#f87171" }) => {
     return (
