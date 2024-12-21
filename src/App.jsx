@@ -1,24 +1,28 @@
-import {Routes, Route, BrowserRouter} from 'react-router-dom'
-import Notes from './pages/Notes';
-import LoginRegister from './pages/LoginRegister';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Notes from "./pages/Notes";
+import LoginRegister from "./pages/LoginRegister";
 
-const App = () => {
-  return (
-    <>
-    <div id="app">
-      <div id="container">
-      <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Notes />} />
-            <Route path="/login" element={<LoginRegister />} />
-          </Routes>
-      </BrowserRouter>
-      </div>
-    </div>
-      
-    </>
-    
-  )
+function App() {
+    const selectedTheme = localStorage.getItem("theme");
+
+    if (selectedTheme) {
+        document
+            .querySelector("body")
+            .setAttribute("data-theme", selectedTheme);
+    }
+
+    return (
+        <div id="app">
+            <div id="container">
+                <BrowserRouter>
+                    <Routes>
+                        <Route element={<Notes />} path="/" />
+                        <Route element={<LoginRegister />} path="/login" />
+                    </Routes>
+                </BrowserRouter>
+            </div>
+        </div>
+    );
 }
 
-export default App
+export default App;
